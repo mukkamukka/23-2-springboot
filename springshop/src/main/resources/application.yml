@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:springshopdb
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    #테이블 생성 후에 data.sql 실행
+    defer-datasource-initialization: true
+  h2:
+    console:
+      enabled: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 747006731294-r0tl7smopfi7amgbnjdt6msco27olj47.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
+
+jwt:
+  issuer: rlaaehdrjs@gmail.com
+  secret_key: springboot-jwt

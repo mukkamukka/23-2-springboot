@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- Default Layout Import-->
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}"
+  layout:fragment="Content"
+>
+  <head>
+    <title>New Order</title>
+  </head>
+
+  <body>
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+      <!-- Page Heading -->
+      <div class="d-sm-flex align-orders-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">주문 등록</h1>
+      </div>
+
+      <!-- Content Row -->
+      <div class="row">
+        <article class="col-lg-7">
+          <input type="hidden" id="article-id" th:value="${order.id}" />
+          <div class="form-group">
+            <label for="userId">사용자선택</label>
+            <br />
+            <select id="userId">
+              <option value="">-- 사용자선택 --</option>
+              <option
+                th:each="val : ${userList}"
+                th:value="${val?.id}"
+                th:utext="${val?.email}"
+              ></option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="itemId">상품선택</label>
+            <br />
+            <select id="itemId">
+              <option value="">-- 상품선택 --</option>
+              <option
+                th:each="val : ${itemList}"
+                th:value="${val?.id}"
+                th:utext="${val?.name}"
+              ></option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="count">구매수량</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="구매수량"
+              name="count"
+              id="count"
+            />
+          </div>
+          <div class="form-group">
+            <label for="city">배송지 - 도시</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="배송지 - 도시"
+              name="city"
+              id="city"
+            />
+          </div>
+          <div class="form-group">
+            <label for="street">배송지 - 상세정보</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="배송지 - 상세정보"
+              name="street"
+              id="street"
+            />
+          </div>
+          <div class="form-group">
+            <label for="zipcode">배송지 - 우편번</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="배송지 - 우편번호"
+              name="zipcode"
+              id="zipcode"
+            />
+          </div>
+          <button
+            th:if="${order.id} == null"
+            type="button"
+            class="btn btn-secondary btn-sm"
+            id="create-btn"
+          >
+            등록
+          </button>
+        </article>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </body>
+</html>
